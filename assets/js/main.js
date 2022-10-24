@@ -29,13 +29,16 @@
     const maxRecords = 150
 
     loadPokemonItens(offset, limit);
+    const loadMorePokemons = document.getElementById("loadMorePokemons")
     loadMorePokemons.addEventListener('click', () => {
         offset += limit
-        if (offset + limit > maxRecords) limit = maxRecords - offset;
+        if (offset + limit > maxRecords) {
+            limit = maxRecords - offset;
+            loadMorePokemons.setAttribute('disabled', 'true')
+        }
 
         if (limit > 0) {
             loadPokemonItens(offset, limit);
         }
     });
-
 })();
